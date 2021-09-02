@@ -1,5 +1,5 @@
 import { NoteType, Tag } from "./modules/classes.js";
-import { appendNotesToNav } from "./modules/functions.js";
+import { appendNoteTypes, appendTags } from "./modules/functions.js";
 
 const allNotes = new NoteType("All Notes");
 allNotes.icon = '<i class="far fa-clipboard"></i>';
@@ -16,5 +16,6 @@ const work = new Tag("Work");
 const untagged = new Tag("Untagged");
 untagged.icon = '<i id="empty" class="far fa-bookmark"></i>';
 const tagList = [travel, personal, life, work, untagged];
-const allNoteTypes = [...noteTypeList, ...tagList];
-appendNotesToNav(allNoteTypes);
+
+appendNoteTypes(noteTypeList);
+appendTags(tagList);

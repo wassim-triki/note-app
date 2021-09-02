@@ -3,6 +3,7 @@ class NoteContainer {
     this.label = label;
     this.notesList = [];
     this.notes = this.notesList.length;
+    this.icon;
   }
 }
 
@@ -14,8 +15,9 @@ export class NoteType extends NoteContainer {
 }
 
 export class Tag extends NoteContainer {
-  constructor(tagName) {
+  constructor(tagName, icon) {
     super(tagName);
     this.parentElement = tags;
+    this.icon = '<i class="far fa-bookmark"></i>';
   }
 }
