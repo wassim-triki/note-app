@@ -6,7 +6,7 @@ class NoteContainer {
   }
   getHTML() {
     const li = document.createElement("li");
-    li.textContent = this.label;
+    li.textContent = this.label + ` (${this.notes})`;
     li.classList.add("tags-notes");
     return li;
   }

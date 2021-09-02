@@ -1,7 +1,7 @@
 :root {
   --clr-white: #f9f4f5;
   --clr-black: #272d2d;
-  --clr-grey: #e6e3e4;
+  --clr-grey: #ebebeb;
 }
 
 *,
@@ -23,13 +23,29 @@ a {
 }
 
 .navbar {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  border: 1px solid red;
+  height: 100vh;
+  display: flex;
 }
 
-.nav-list-item {
+#nav-list {
+  border: 1px solid blue;
+  width: 100%;
+}
+
+.title {
   background: var(--clr-grey);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.title,
+.tags-notes {
+  /* border: 1px solid red; */
+  padding: 0.9rem;
 }
 
 .tags-notes {
   background: var(--clr-white);
+  border-bottom: 2px solid var(--clr-grey);
 }
