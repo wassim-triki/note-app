@@ -10,11 +10,11 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Poppins;
 }
 body {
   background: var(--clr-white);
   color: var(--clr-black);
+  font-family: Poppins;
 }
 li,
 a {
@@ -48,4 +48,7 @@ a {
 .tags-notes {
   background: var(--clr-white);
   border-bottom: 2px solid var(--clr-grey);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
