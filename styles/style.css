@@ -30,7 +30,6 @@ a {
   background: var(--clr-grey);
 }
 
-.note,
-.tag {
+.tags-notes {
   background: var(--clr-white);
 }
