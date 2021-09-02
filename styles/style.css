@@ -15,6 +15,7 @@ body {
   background: var(--clr-white);
   color: var(--clr-black);
   font-family: Poppins;
+  position: relative;
 }
 li,
 a {
@@ -24,9 +25,12 @@ a {
 
 .navbar {
   font-size: 1.4rem;
-  border: 1px solid red;
   height: 100vh;
+  width: 100vw;
   display: flex;
+  position: absolute;
+  left: -100%;
+  transition: left 0.5s ease;
 }
 
 #nav-list {
@@ -41,7 +45,6 @@ a {
 }
 .title,
 .tags-notes {
-  /* border: 1px solid red; */
   padding: 0.9rem;
 }
 
@@ -67,4 +70,29 @@ a {
 }
 .red {
   color: #dd1155;
+}
+
+.fa-bars,
+.fa-times {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  height: 3rem;
+  color: #555555;
+}
+
+.fa-bars {
+  font-size: 3rem;
+  text-align: center;
+  margin: 0.2rem 0 0 0.4rem;
+}
+
+.fa-times {
+  font-size: 2rem;
+  left: 88%;
+  margin-top: 0.8rem;
+}
+
+.slide-in {
+  left: 0%;
 }
