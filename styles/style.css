@@ -1,0 +1,36 @@
+:root {
+  --clr-white: #f9f4f5;
+  --clr-black: #272d2d;
+  --clr-grey: #e6e3e4;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+body {
+  background: var(--clr-white);
+  color: var(--clr-black);
+}
+li,
+a {
+  text-decoration: none;
+  list-style: none;
+}
+
+.navbar {
+  font-size: 1.5rem;
+}
+
+.nav-list-item {
+  background: var(--clr-grey);
+}
+
+.note,
+.tag {
+  background: var(--clr-white);
+}
