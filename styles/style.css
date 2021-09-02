@@ -30,8 +30,8 @@ a {
 }
 
 #nav-list {
-  border: 1px solid blue;
   width: 100%;
+  height: 100%;
 }
 
 .title {
@@ -51,4 +51,20 @@ a {
   display: flex;
   align-items: center;
   gap: 0.7rem;
+}
+
+.green {
+  color: #00cc99;
+}
+.cyan {
+  color: #69ddff;
+}
+.yellow {
+  color: #ffdb3a;
+}
+.blue {
+  color: #4c5cf1;
+}
+.red {
+  color: #dd1155;
 }

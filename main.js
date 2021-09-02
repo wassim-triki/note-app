@@ -14,8 +14,7 @@ const personal = new Tag("Personal");
 const life = new Tag("Life");
 const work = new Tag("Work");
 const untagged = new Tag("Untagged");
-untagged.icon = '<i class="far fa-bookmark"></i>';
+untagged.icon = '<i id="empty" class="far fa-bookmark"></i>';
 const tagList = [travel, personal, life, work, untagged];
-
 const allNoteTypes = [...noteTypeList, ...tagList];
 appendNotesToNav(allNoteTypes);
