@@ -16,6 +16,7 @@ const work = new Tag("Work");
 const untagged = new Tag("Untagged");
 untagged.icon = '<i id="empty" class="far fa-bookmark"></i>';
 const tagList = [travel, personal, life, work, untagged];
+<<<<<<< HEAD
 
 appendNoteTypes(noteTypeList);
 appendTags(tagList);
@@ -29,3 +30,7 @@ navToggle.addEventListener("click", () => {
 navShrink.addEventListener("click", () => {
   navbar.classList.remove("slide-in");
 });
+=======
+const allNoteTypes = [...noteTypeList, ...tagList];
+appendNotesToNav(allNoteTypes);
+>>>>>>> 8d94809 (add colored icons procedurally)

@@ -15,7 +15,7 @@ export class NoteType extends NoteContainer {
 }
 
 export class Tag extends NoteContainer {
-  constructor(tagName, icon) {
+  constructor(tagName) {
     super(tagName);
     this.parentElement = tags;
     this.icon = '<i class="far fa-bookmark"></i>';
