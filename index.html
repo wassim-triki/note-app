@@ -27,7 +27,17 @@
             </ul></li>
         </ul>
     </nav>
-    <button type="button" id="new">New note</button>
+    <button class="btn" type="button" id="new">New note</button>
+    <div class="modal">
+        <div class="modal-header"><span id="close-modal">&times</span></div>
+        <div class="modal-body">
+            <textarea name="note-text" id="note-text" ></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="discard btn" type="button">discard</button>
+            <button class="done btn" type="button">done</button>
+        </div>
+    </div>
     <!--JS-->
     <script type="module" src="./main.js"></script>
 </body>
