@@ -78,7 +78,7 @@ a {
 }
 
 .fa-bars,
-.fa-times {
+.close-nav {
   position: absolute;
   width: 3rem;
   height: 3rem;
@@ -92,10 +92,14 @@ a {
   margin: 0.2rem 0 0 0.4rem;
 }
 
-.fa-times {
+.close-nav {
   font-size: 2rem;
   left: 88%;
   margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
 }
 
 .slide-in {
