@@ -1,5 +1,6 @@
 import { NoteType, Tag } from "./modules/classes.js";
 import { appendNoteTypes, appendTags } from "./modules/functions.js";
+import { navbarToggle } from "./modules/navbar.js";
 
 const allNotes = new NoteType("All Notes");
 allNotes.icon = '<i class="far fa-clipboard"></i>';
@@ -20,12 +21,4 @@ const tagList = [travel, personal, life, work, untagged];
 appendNoteTypes(noteTypeList);
 appendTags(tagList);
 
-const navbar = document.querySelector(".navbar");
-const navToggle = document.querySelector(".fa-bars");
-const navShrink = document.querySelector(".fa-times");
-navToggle.addEventListener("click", () => {
-  navbar.classList.add("slide-in");
-});
-navShrink.addEventListener("click", () => {
-  navbar.classList.remove("slide-in");
-});
+navbarToggle();
