@@ -24,7 +24,7 @@ a {
 }
 
 .navbar {
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -45,7 +45,7 @@ a {
 }
 .title,
 .tags-notes {
-  padding: 0.9rem;
+  padding: 1rem;
 }
 
 .tags-notes {
