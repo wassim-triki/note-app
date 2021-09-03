@@ -54,6 +54,11 @@ a {
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  transition: background-color 0.1s cubic-bezier(0.15, 0.89, 1, 1.03);
+}
+
+.tags-notes:active {
+  background: var(--clr-grey);
 }
 
 .green {
