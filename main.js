@@ -22,3 +22,15 @@ appendNoteTypes(noteTypeList);
 appendTags(tagList);
 
 navbarToggle();
+
+const newNoteBtn = document.querySelector("#new");
+const closeModalBtn = document.querySelector("#close-modal");
+const noteModal = document.querySelector(".modal");
+newNoteBtn.addEventListener("click", () => {
+  noteModal.classList.add("modal-visible");
+  newNoteBtn.classList.add("new-hidden");
+});
+closeModalBtn.addEventListener("click", () => {
+  noteModal.classList.remove("modal-visible");
+  newNoteBtn.classList.remove("new-hidden");
+});
