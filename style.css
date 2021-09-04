@@ -16,6 +16,7 @@ body {
   color: var(--clr-black);
   font-family: Poppins, sans-serif;
   position: relative;
+  /* height: 100vh; */
 }
 li,
 a {
@@ -91,7 +92,7 @@ a {
   font-size: 3rem;
   text-align: center;
   margin: 0.2rem 0 0 0.4rem;
-  z-index: -3;
+  z-index: 6;
 }
 
 .close-nav {
@@ -154,6 +155,7 @@ a {
   flex-direction: column;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.267);
   transition: top 0.5s cubic-bezier(0, 1.12, 0.76, 1.03);
+  z-index: 6;
 }
 .modal-visible {
   top: 10rem;
@@ -236,4 +238,34 @@ a {
   background: var(--clr-black);
   color: var(--clr-white);
   padding: 0.7rem 1.5rem;
+  transition: transform 0.2s ease;
+}
+.done:active {
+  background: #363636;
+  transform: scale(0.97);
+}
+
+.container {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.note {
+  border: 1px solid #9b9b9b;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.note-text {
+  font-size: 1.3rem;
+}
+
+.note-date {
+  color: #868686;
+  padding-top: 1rem;
+  font-size: 0.9rem;
 }

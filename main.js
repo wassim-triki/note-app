@@ -1,9 +1,10 @@
-import { NoteType, Tag } from "./modules/classes.js";
+import { NoteType, Tag, Note } from "./modules/classes.js";
 import {
   appendNoteTypes,
   appendTags,
   closeModal,
   openModal,
+  clearNote,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
 
@@ -31,14 +32,36 @@ navbarToggle();
 const newNoteBtn = document.querySelector("#new");
 const closeModalBtn = document.querySelector("#close-modal");
 const discardBtn = document.querySelector(".discard");
+const doneBtn = document.querySelector(".done");
 const noteModal = document.querySelector(".modal");
 const modalClosingBtns = [discardBtn, closeModalBtn];
+const noteArea = document.querySelector("#note-text");
+
+const noteContainer = document.querySelector(".container");
+
+const notes = [];
+
+const addNote = (container) => {
+  let noteText = noteArea.value.trim();
+  if (noteText.length > 0) {
+    const note = new Note(noteText);
+    container.appendChild(note.HTML());
+    notes.push(note);
+  }
+  clearNote(noteArea);
+  closeModal(noteModal, newNoteBtn);
+};
 
 modalClosingBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     closeModal(noteModal, newNoteBtn);
+    clearNote(noteArea);
   });
 });
 newNoteBtn.addEventListener("click", () => {
   openModal(noteModal, newNoteBtn);
+});
+
+doneBtn.addEventListener("click", () => {
+  addNote(noteContainer);
 });

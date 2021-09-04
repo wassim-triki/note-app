@@ -36,3 +36,11 @@ export const openModal = (modal, btn) => {
   modal.classList.add("modal-visible");
   btn.classList.add("new-hidden");
 };
+
+export const clearNote = (noteArea) => {
+  noteArea.value = "";
+};
+
+export const getFormattedDate = () => {
+  return new Date().toString().slice(0, new Date().toString().lastIndexOf(":"));
+};
