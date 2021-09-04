@@ -27,3 +27,12 @@ export const appendTags = (tags) => {
     tag.parentElement.appendChild(li);
   });
 };
+
+export const closeModal = (modal, btn) => {
+  modal.classList.remove("modal-visible");
+  btn.classList.remove("new-hidden");
+};
+export const openModal = (modal, btn) => {
+  modal.classList.add("modal-visible");
+  btn.classList.add("new-hidden");
+};
