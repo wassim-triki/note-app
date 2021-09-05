@@ -38,14 +38,14 @@ const closeModalBtn = document.querySelector("#close-modal");
 const discardBtn = document.querySelector(".discard");
 const doneBtn = document.querySelector(".done");
 const noteModal = document.querySelector(".modal");
-const modalClosingBtns = [discardBtn, closeModalBtn];
+const modalClosingBtns = [discardBtn, closeModalBtn, doneBtn];
 const noteArea = document.querySelector("#note-text");
 
 const noteContainer = document.querySelector(".container");
 
 const notes = [];
 
-const addNote = () => {
+const addNote = (e) => {
   let noteText = noteArea.value.trim();
   let [tag] = tagList.filter((t) => t.label.toLowerCase() == tagSelect.value);
   if (noteText.length > 0) {
@@ -53,22 +53,24 @@ const addNote = () => {
     noteContainer.appendChild(note.HTML());
     notes.push(note);
   }
-  clearNote(noteArea);
-  closeModal(noteModal, newNoteBtn);
-  resetTagSelect(tagSelect);
 };
 
 modalClosingBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", (e) => {
+    if (e.target == doneBtn) {
+      addNote(e);
+    }
     closeModal(noteModal, newNoteBtn);
     clearNote(noteArea);
     resetTagSelect(tagSelect);
+    console.log(notes);
   });
 });
+
 newNoteBtn.addEventListener("click", () => {
   openModal(noteModal, newNoteBtn);
 });
 
 doneBtn.addEventListener("click", () => {
-  addNote(noteContainer);
+  addNote;
 });

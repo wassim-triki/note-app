@@ -1,4 +1,9 @@
-import { getFormattedDate, getTagIcon, removeNote } from "./functions.js";
+import {
+  getFormattedDate,
+  getTagIcon,
+  removeNote,
+  randInt,
+} from "./functions.js";
 
 class NoteContainer {
   constructor(label) {

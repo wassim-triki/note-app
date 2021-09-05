@@ -49,6 +49,7 @@ export const getFormattedDate = () => {
 };
 export const removeNote = (e) => {
   const note = e.target.parentNode.parentNode;
+  console.log(note);
   note.remove();
 };
 
@@ -63,4 +64,8 @@ export const addModalTags = (tags, select) => {
 
 export const resetTagSelect = (select) => {
   select.getElementsByTagName("option")[0].selected = "selected";
+};
+
+export const randInt = (min = 0, max = 10000) => {
+  return Math.floor(Math.random() * (max - min) + min);
 };
