@@ -1,7 +1,7 @@
 import { NoteType, Note } from "./modules/classes.js";
 import {
-  addNoteTypes,
-  addTags,
+  /*addNoteTypes,*/
+  /*addTags,*/
   closeModal,
   openModal,
   clearNote,
@@ -9,7 +9,7 @@ import {
   resetTagSelect,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
-import { tags } from "./modules/objects.js";
+import { tags } from "./modules/classes.js";
 
 const allNotes = new NoteType("All Notes");
 allNotes.icon = '<i class="far fa-clipboard"></i>';
@@ -24,8 +24,8 @@ for (const key in tags) {
   tagList.push(tags[key]);
 }
 
-addNoteTypes(noteTypeList);
-addTags(tagList);
+// addNoteTypes(noteTypeList);
+// addTags(tagList);
 
 navbarToggle();
 
@@ -43,15 +43,17 @@ const noteArea = document.querySelector("#note-text");
 
 const noteContainer = document.querySelector(".container");
 
-export const notesList = [];
+export const notesList = JSON.parse(window.localStorage.getItem("notes"));
 
 const addNote = (e) => {
   let noteText = noteArea.value.trim();
   let [tag] = tagList.filter((t) => t.label.toLowerCase() == tagSelect.value);
   if (noteText.length > 0) {
     const note = new Note(noteText, tag);
+    tag.notes++;
     noteContainer.appendChild(note.HTML());
     notesList.push(note);
+    window.localStorage.setItem("notes", JSON.stringify(notesList));
   }
 };
 
@@ -70,7 +72,6 @@ newNoteBtn.addEventListener("click", () => {
   openModal(noteModal, newNoteBtn);
 });
 
-doneBtn.addEventListener("click", () => {
-  addNote;
-  console.log(notesList);
+doneBtn.addEventListener("click", (e) => {
+  addNote(e);
 });

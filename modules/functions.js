@@ -1,35 +1,45 @@
-export const addNoteTypes = (noteTypesList) => {
-  noteTypesList.forEach((type) => {
-    const li = document.createElement("li");
-    li.classList.add("tags-notes");
-    const span = document.createElement("span");
-    span.textContent = `${type.label} (${type.notes})`;
-    li.innerHTML = `${type.icon} <span>${type.label} (${type.notes})</span>`;
-    type.parentElement.appendChild(li);
-    li;
-  });
+const notesUl = document.querySelector("#notes");
+const tagsUl = document.querySelector("#tags");
+
+import { tagsAndNoteTypes } from "./classes.js";
+
+const addNavItems = () => {
+  for (item in tagsAndNoteTypes) {
+    console.log(item);
+  }
 };
 
-export const getTagIcon = (tagObj) => {
-  const i = document.createElement("i");
-  tagObj.label == "Untagged" ? i.classList.add("far") : i.classList.add("fas");
-  i.classList.add("fa-bookmark");
-  i.classList.add(tagObj.color);
-  return i;
-};
+addNavItems();
+// export const addNoteTypes = (noteTypesList) => {
+//   noteTypesList.forEach((type) => {
+//     const li = document.createElement("li");
+//     li.classList.add("tags-notes");
+//     li.innerHTML = `${type.icon} <span>${type.label} (${type.notes})</span>`;
+//     notesUl.appendChild(li);
+//     li;
+//   });
+// };
 
-export const addTags = (tags) => {
-  tags.forEach((tag) => {
-    const li = document.createElement("li");
-    li.classList.add("tags-notes");
-    const span = document.createElement("span");
-    span.textContent = `${tag.label} (${tag.notes})`;
-    const i = getTagIcon(tag);
-    li.appendChild(i);
-    li.appendChild(span);
-    tag.parentElement.appendChild(li);
-  });
-};
+// export const getTagIcon = (tagObj) => {
+//   const i = document.createElement("i");
+//   tagObj.label == "Untagged" ? i.classList.add("far") : i.classList.add("fas");
+//   i.classList.add("fa-bookmark");
+//   i.classList.add(tagObj.color);
+//   return i;
+// };
+
+// export const addTags = (tags) => {
+//   tags.forEach((tag) => {
+//     const li = document.createElement("li");
+//     li.classList.add("tags-notes");
+//     const span = document.createElement("span");
+//     span.textContent = `${tag.label} (${tag.notes})`;
+//     const i = getTagIcon(tag);
+//     li.appendChild(i);
+//     li.appendChild(span);
+//     tagsUl.appendChild(li);
+//   });
+// };
 
 export const closeModal = (modal, btn) => {
   modal.classList.remove("modal-visible");

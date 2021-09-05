@@ -1,25 +1,22 @@
-import { getFormattedDate, getTagIcon, removeNote } from "./functions.js";
+import { getFormattedDate, /*getTagIcon,*/ removeNote } from "./functions.js";
 import { notesList } from "../main.js";
+
 class NoteContainer {
   constructor(label) {
     this.label = label;
-    this.notesList = [];
-    this.notes = this.notesList.length;
-    this.icon;
+    this.notes = 0;
   }
 }
 
 export class NoteType extends NoteContainer {
-  constructor(nodeType) {
-    super(nodeType);
-    this.parentElement = notes;
+  constructor(label) {
+    super(label);
   }
 }
 
 export class Tag extends NoteContainer {
-  constructor(tagName, color) {
-    super(tagName);
-    this.parentElement = tags;
+  constructor(label, color) {
+    super(label);
     this.color = color;
   }
 }
@@ -52,6 +49,7 @@ export class Note {
     trash.classList.add("fa-trash-alt");
     trash.addEventListener("click", (e) => {
       removeNote(e, notesList);
+      window.localStorage.setItem("notes", JSON.stringify(notesList));
     });
     noteFooter.appendChild(noteDate);
     noteFooter.appendChild(trash);
@@ -66,3 +64,42 @@ export class Note {
     return noteDiv;
   }
 }
+
+//===========================================================
+export const noteTypes = {
+  all: new NoteType("All notes"),
+  toDos: new NoteType("To-Dos"),
+  favourites: new NoteType("Favourites"),
+};
+
+export const tags = {
+  travel: new Tag("Travel", "green"),
+  personal: new Tag("Personal", "cyan"),
+  life: new Tag("Life", "yellow"),
+  work: new Tag("Work", "red"),
+  untagged: new Tag("Untagged", "blue"),
+};
+
+const iconFromClasses = (...classes) => {
+  const i = document.createElement("i");
+  classes.forEach((c) => {
+    i.classList.add(c);
+  });
+  return i;
+};
+
+export const icons = {
+  all: iconFromClasses("far", "fa-clipboard"),
+  toDos: iconFromClasses("far", "check-circle"),
+  favourites: iconFromClasses("far", "fa-star"),
+  travel: iconFromClasses("fas", "fa-bookmark"),
+  personal: iconFromClasses("fas", "fa-bookmark"),
+  life: iconFromClasses("fas", "fa-bookmark"),
+  work: iconFromClasses("fas", "fa-bookmark"),
+  untagged: iconFromClasses("far", "fa-bookmark"),
+};
+
+export const tagsAndNoteTypes = {
+  ...noteTypes,
+  ...tags,
+};
