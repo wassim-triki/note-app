@@ -1,4 +1,4 @@
-import { getFormattedDate, removeNote } from "./functions.js";
+import { getFormattedDate, getTagIcon, removeNote } from "./functions.js";
 
 class NoteContainer {
   constructor(label) {
@@ -17,16 +17,17 @@ export class NoteType extends NoteContainer {
 }
 
 export class Tag extends NoteContainer {
-  constructor(tagName) {
+  constructor(tagName, color) {
     super(tagName);
     this.parentElement = tags;
-    this.icon = '<i class="far fa-bookmark"></i>';
+    this.color = color;
   }
 }
 
 export class Note {
-  constructor(text) {
+  constructor(text, tag) {
     this.text = text;
+    this.tag = tag;
     this.date = getFormattedDate();
   }
   HTML() {
@@ -35,6 +36,11 @@ export class Note {
 
     const noteHeader = document.createElement("div");
     noteHeader.classList.add("note-header");
+    const tagIcon = getTagIcon(this.tag);
+    const headerTag = document.createElement("p");
+    headerTag.textContent = this.tag.label;
+    noteHeader.appendChild(tagIcon);
+    noteHeader.appendChild(headerTag);
 
     const noteFooter = document.createElement("div");
     noteFooter.classList.add("note-footer");

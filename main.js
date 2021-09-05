@@ -1,12 +1,15 @@
-import { NoteType, Tag, Note } from "./modules/classes.js";
+import { NoteType, Note } from "./modules/classes.js";
 import {
-  appendNoteTypes,
-  appendTags,
+  addNoteTypes,
+  addTags,
   closeModal,
   openModal,
   clearNote,
+  addModalTags,
+  resetTagSelect,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
+import { tags } from "./modules/objects.js";
 
 const allNotes = new NoteType("All Notes");
 allNotes.icon = '<i class="far fa-clipboard"></i>';
@@ -16,18 +19,19 @@ const favourites = new NoteType("Fovourites");
 favourites.icon = '<i class="far fa-star"></i>';
 const noteTypeList = [allNotes, toDos, favourites];
 
-const travel = new Tag("Travel");
-const personal = new Tag("Personal");
-const life = new Tag("Life");
-const work = new Tag("Work");
-const untagged = new Tag("Untagged");
-untagged.icon = '<i id="empty" class="far fa-bookmark"></i>';
-const tagList = [travel, personal, life, work, untagged];
+const tagList = [];
+for (const key in tags) {
+  tagList.push(tags[key]);
+}
 
-appendNoteTypes(noteTypeList);
-appendTags(tagList);
+addNoteTypes(noteTypeList);
+addTags(tagList);
 
 navbarToggle();
+
+const tagSelect = document.querySelector("#tag-select");
+
+addModalTags(tagList, tagSelect);
 
 const newNoteBtn = document.querySelector("#new");
 const closeModalBtn = document.querySelector("#close-modal");
@@ -41,22 +45,24 @@ const noteContainer = document.querySelector(".container");
 
 const notes = [];
 
-const addNote = (container) => {
+const addNote = () => {
   let noteText = noteArea.value.trim();
+  let [tag] = tagList.filter((t) => t.label.toLowerCase() == tagSelect.value);
   if (noteText.length > 0) {
-    const note = new Note(noteText);
-    container.appendChild(note.HTML());
+    const note = new Note(noteText, tag);
+    noteContainer.appendChild(note.HTML());
     notes.push(note);
-    console.log(notes);
   }
   clearNote(noteArea);
   closeModal(noteModal, newNoteBtn);
+  resetTagSelect(tagSelect);
 };
 
 modalClosingBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     closeModal(noteModal, newNoteBtn);
     clearNote(noteArea);
+    resetTagSelect(tagSelect);
   });
 });
 newNoteBtn.addEventListener("click", () => {

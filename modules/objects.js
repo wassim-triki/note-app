@@ -1,9 +1,8 @@
 import { Tag } from "./classes.js";
-
-export const colors = {
-  travel: "#00cc99",
-  personal: "#69ddff",
-  life: "#ffdb3a",
-  work: "#dd1155",
-  untagged: "#2c4d8b",
+export const tags = {
+  travel: new Tag("Travel", "green"),
+  personal: new Tag("Personal", "cyan"),
+  life: new Tag("Life", "yellow"),
+  work: new Tag("Work", "red"),
+  untagged: new Tag("Untagged", "blue"),
 };

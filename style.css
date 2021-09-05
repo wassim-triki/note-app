@@ -272,7 +272,11 @@ a {
 
 .note-header {
   display: flex;
-  flex-direction: row-reverse;
+  margin-bottom: 1rem;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  opacity: 0.8;
 }
 .note-footer {
   display: flex;
@@ -296,4 +300,13 @@ a {
 .fa-trash-alt:active {
   font-size: 1.4rem;
   /* background-color: #ecebeb; */
+}
+
+#tag-select {
+  border: none;
+  background: var(--clr-white);
+  margin: 1.5rem 0 0 1rem;
+  font-family: Poppins, sans-serif;
+  font-size: 0.9rem;
+  outline: none;
 }
