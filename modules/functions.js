@@ -44,3 +44,6 @@ export const clearNote = (noteArea) => {
 export const getFormattedDate = () => {
   return new Date().toString().slice(0, new Date().toString().lastIndexOf(":"));
 };
+export const removeNote = (e) => {
+  e.target.parentNode.parentNode.remove();
+};

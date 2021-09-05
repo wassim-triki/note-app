@@ -47,6 +47,7 @@ const addNote = (container) => {
     const note = new Note(noteText);
     container.appendChild(note.HTML());
     notes.push(note);
+    console.log(notes);
   }
   clearNote(noteArea);
   closeModal(noteModal, newNoteBtn);

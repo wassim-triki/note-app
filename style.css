@@ -130,7 +130,7 @@ a {
   transition: box-shadow 0.1s ease;
   transition: font-size 0.1s ease;
   transition: bottom 0.4s cubic-bezier(0, 1.12, 0.76, 1.03);
-  z-index: 5;
+  z-index: 6;
 }
 #new:active {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.233);
@@ -146,7 +146,7 @@ a {
   position: fixed;
   left: 0;
   right: 0;
-  top: 50rem;
+  top: 101vh;
   margin-left: auto;
   margin-right: auto;
   height: 20rem;
@@ -262,10 +262,38 @@ a {
 }
 .note-text {
   font-size: 1.3rem;
+  overflow-wrap: break-word;
 }
 
 .note-date {
   color: #868686;
-  padding-top: 1rem;
   font-size: 0.9rem;
+}
+
+.note-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.fa-trash-alt {
+  font-size: 1.5rem;
+  color: #fd504a;
+  border-radius: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: font-size 0.2s ease;
+  transition: background-color 0.2 ease;
+}
+
+.fa-trash-alt:active {
+  font-size: 1.4rem;
+  /* background-color: #ecebeb; */
 }

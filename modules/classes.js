@@ -1,4 +1,4 @@
-import { getFormattedDate } from "./functions.js";
+import { getFormattedDate, removeNote } from "./functions.js";
 
 class NoteContainer {
   constructor(label) {
@@ -30,16 +30,31 @@ export class Note {
     this.date = getFormattedDate();
   }
   HTML() {
-    const noteText = document.createElement("p");
-    noteText.textContent = this.text;
-    noteText.classList.add("note-text");
+    const noteDiv = document.createElement("div");
+    noteDiv.classList.add("note");
+
+    const noteHeader = document.createElement("div");
+    noteHeader.classList.add("note-header");
+
+    const noteFooter = document.createElement("div");
+    noteFooter.classList.add("note-footer");
     const noteDate = document.createElement("p");
     noteDate.textContent = this.date;
     noteDate.classList.add("note-date");
-    const noteDiv = document.createElement("div");
-    noteDiv.classList.add("note");
+    const trash = document.createElement("i");
+    trash.classList.add("far");
+    trash.classList.add("fa-trash-alt");
+    trash.addEventListener("click", removeNote);
+    noteFooter.appendChild(noteDate);
+    noteFooter.appendChild(trash);
+
+    const noteText = document.createElement("p");
+    noteText.textContent = this.text;
+    noteText.classList.add("note-text");
+
+    noteDiv.appendChild(noteHeader);
     noteDiv.appendChild(noteText);
-    noteDiv.append(noteDate);
+    noteDiv.append(noteFooter);
     return noteDiv;
   }
 }
