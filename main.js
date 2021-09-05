@@ -51,10 +51,10 @@ export class Note {
 
     const noteHeader = document.createElement("div");
     noteHeader.classList.add("note-header");
-    // const tagIcon = getTagIcon(this.tag);
+    const tagIcon = icons[this.tag.label.toLowerCase()];
     const headerTag = document.createElement("p");
     headerTag.textContent = this.tag.label;
-    // noteHeader.appendChild(tagIcon);
+    noteHeader.appendChild(tagIcon);
     noteHeader.appendChild(headerTag);
 
     const noteFooter = document.createElement("div");
@@ -86,7 +86,7 @@ export class Note {
 //============================OBJECTS===============================
 export const noteTypes = {
   all: new NoteType("All notes"),
-  toDos: new NoteType("To-Dos"),
+  "to-dos": new NoteType("To-Dos"),
   favourites: new NoteType("Favourites"),
 };
 
@@ -108,7 +108,7 @@ const iconFromClasses = (...classes) => {
 
 export const icons = {
   all: iconFromClasses("far", "fa-clipboard"),
-  toDos: iconFromClasses("far", "fa-check-circle"),
+  "to-dos": iconFromClasses("far", "fa-check-circle"),
   favourites: iconFromClasses("far", "fa-star"),
   travel: iconFromClasses("fas", "fa-bookmark", "green"),
   personal: iconFromClasses("fas", "fa-bookmark", "cyan"),
