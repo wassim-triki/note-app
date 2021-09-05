@@ -1,10 +1,5 @@
-import {
-  getFormattedDate,
-  getTagIcon,
-  removeNote,
-  randInt,
-} from "./functions.js";
-
+import { getFormattedDate, getTagIcon, removeNote } from "./functions.js";
+import { notesList } from "../main.js";
 class NoteContainer {
   constructor(label) {
     this.label = label;
@@ -55,7 +50,9 @@ export class Note {
     const trash = document.createElement("i");
     trash.classList.add("far");
     trash.classList.add("fa-trash-alt");
-    trash.addEventListener("click", removeNote);
+    trash.addEventListener("click", (e) => {
+      removeNote(e, notesList);
+    });
     noteFooter.appendChild(noteDate);
     noteFooter.appendChild(trash);
 

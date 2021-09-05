@@ -43,7 +43,7 @@ const noteArea = document.querySelector("#note-text");
 
 const noteContainer = document.querySelector(".container");
 
-const notes = [];
+export const notesList = [];
 
 const addNote = (e) => {
   let noteText = noteArea.value.trim();
@@ -51,7 +51,7 @@ const addNote = (e) => {
   if (noteText.length > 0) {
     const note = new Note(noteText, tag);
     noteContainer.appendChild(note.HTML());
-    notes.push(note);
+    notesList.push(note);
   }
 };
 
@@ -63,7 +63,6 @@ modalClosingBtns.forEach((btn) => {
     closeModal(noteModal, newNoteBtn);
     clearNote(noteArea);
     resetTagSelect(tagSelect);
-    console.log(notes);
   });
 });
 
@@ -73,4 +72,5 @@ newNoteBtn.addEventListener("click", () => {
 
 doneBtn.addEventListener("click", () => {
   addNote;
+  console.log(notesList);
 });

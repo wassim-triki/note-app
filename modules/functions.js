@@ -47,9 +47,16 @@ export const clearNote = (noteArea) => {
 export const getFormattedDate = () => {
   return new Date().toString().slice(0, new Date().toString().lastIndexOf(":"));
 };
-export const removeNote = (e) => {
+export const removeNote = (e, notes) => {
+  let i = 0;
   const note = e.target.parentNode.parentNode;
-  console.log(note);
+  let newNote = note;
+  while (newNote.previousElementSibling != null) {
+    i++;
+    newNote = newNote.previousElementSibling;
+  }
+  notes.splice(i, 1);
+  console.log(notes);
   note.remove();
 };
 
