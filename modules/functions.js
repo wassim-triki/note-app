@@ -1,7 +1,7 @@
+import { tagsAndNoteTypes } from "./classes.js";
+
 const notesUl = document.querySelector("#notes");
 const tagsUl = document.querySelector("#tags");
-
-import { tagsAndNoteTypes } from "./classes.js";
 
 const addNavItems = () => {
   for (item in tagsAndNoteTypes) {
