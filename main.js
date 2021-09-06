@@ -34,6 +34,7 @@ export const icons = {
   work: iconFromClasses("fas", "fa-bookmark", "red"),
   untagged: iconFromClasses("far", "fa-bookmark", "blue"),
 };
+
 // class NoteContainer {
 //   constructor(label) {
 //     this.label = label;
@@ -80,11 +81,19 @@ function updateTagListsObjects() {
 
 const tagsUl = document.querySelector("#tags");
 
+const returnIcon = (tagName) => {
+  return icons[tagName];
+};
+
 function renderNavTags() {
   for (let tag in tags) {
     let currentTag = tags[tag];
     const li = document.createElement("li");
     li.classList.add("tags-notes");
+
+    const tagIcon = icons[currentTag.label.toLowerCase()];
+    li.appendChild(tagIcon);
+
     const label = document.createElement("p");
     label.classList.add(currentTag.label);
     label.textContent = currentTag.label;
@@ -132,10 +141,10 @@ class Note {
 
     const noteHeader = document.createElement("div");
     noteHeader.classList.add("note-header");
-    // const tagIcon = icons[this.tag.toLowerCase()];
+    const tagIcon = icons[this.tagName.toLowerCase()].cloneNode(true);
     const headerTag = document.createElement("p");
     headerTag.textContent = this.tagName;
-    // noteHeader.appendChild(tagIcon);
+    noteHeader.appendChild(tagIcon);
     noteHeader.appendChild(headerTag);
 
     const noteFooter = document.createElement("div");
