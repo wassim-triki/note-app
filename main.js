@@ -13,7 +13,7 @@ const noteArea = document.querySelector("#note-text");
 
 const noteContainer = document.querySelector(".container");
 
-const notesList =
+const noteList =
   window.localStorage.length > 0
     ? JSON.parse(window.localStorage.getItem("notes"))
     : [];
@@ -26,20 +26,20 @@ class NoteContainer {
   }
 }
 
-export class NoteType extends NoteContainer {
+class NoteType extends NoteContainer {
   constructor(label) {
     super(label);
   }
 }
 
-export class Tag extends NoteContainer {
+class Tag extends NoteContainer {
   constructor(label, color) {
     super(label);
     this.color = color;
   }
 }
 
-export class Note {
+class Note {
   constructor(text, tag) {
     this.text = text;
     this.tag = tag;
@@ -54,7 +54,7 @@ export class Note {
     const tagIcon = icons[this.tag.label.toLowerCase()];
     const headerTag = document.createElement("p");
     headerTag.textContent = this.tag.label;
-    noteHeader.appendChild(tagIcon);
+    // noteHeader.appendChild(tagIcon);
     noteHeader.appendChild(headerTag);
 
     const noteFooter = document.createElement("div");
@@ -66,8 +66,8 @@ export class Note {
     trash.classList.add("far");
     trash.classList.add("fa-trash-alt");
     trash.addEventListener("click", (e) => {
-      removeNote(e, notesList);
-      window.localStorage.setItem("notes", JSON.stringify(notesList));
+      removeNote(e, noteList);
+      window.localStorage.setItem("notes", JSON.stringify(noteList));
     });
     noteFooter.appendChild(noteDate);
     noteFooter.appendChild(trash);
@@ -141,6 +141,22 @@ function navbarToggle() {
 }
 navbarToggle();
 
+const getNotesNumber = (obj) => {
+  if (noteList.length == 0) {
+    obj.notes = 0;
+  } else {
+    if (obj.label === "All notes") {
+      obj.notes = noteList.length;
+    }
+    noteList.forEach((n) => {
+      if (obj.label === n.tag.label) {
+        obj.notes = n.tag.notes;
+      }
+    });
+  }
+  return obj.notes;
+};
+
 const addNavItems = () => {
   let tn = tagsAndNoteTypes;
   for (let key in tn) {
@@ -152,41 +168,15 @@ const addNavItems = () => {
       const label = document.createElement("p");
       label.textContent = current.label;
       li.appendChild(label);
+      const number = document.createElement("span");
+      number.id = current.label;
+      number.textContent = `(${getNotesNumber(current)})`;
+      li.appendChild(number);
       key === "noteTypes" ? notesUl.appendChild(li) : tagsUl.appendChild(li);
     }
   }
 };
 addNavItems();
-// export const addNoteTypes = (noteTypesList) => {
-//   noteTypesList.forEach((type) => {
-//     const li = document.createElement("li");
-//     li.classList.add("tags-notes");
-//     li.innerHTML = `${type.icon} <span>${type.label} (${type.notes})</span>`;
-//     notesUl.appendChild(li);
-//     li;
-//   });
-// };
-
-// export const getTagIcon = (tagObj) => {
-//   const i = document.createElement("i");
-//   tagObj.label == "Untagged" ? i.classList.add("far") : i.classList.add("fas");
-//   i.classList.add("fa-bookmark");
-//   i.classList.add(tagObj.color);
-//   return i;
-// };
-
-// export const addTags = (tags) => {
-//   tags.forEach((tag) => {
-//     const li = document.createElement("li");
-//     li.classList.add("tags-notes");
-//     const span = document.createElement("span");
-//     span.textContent = `${tag.label} (${tag.notes})`;
-//     const i = getTagIcon(tag);
-//     li.appendChild(i);
-//     li.appendChild(span);
-//     tagsUl.appendChild(li);
-//   });
-// };
 
 export const closeModal = (modal, btn) => {
   modal.classList.remove("modal-visible");
@@ -240,16 +230,33 @@ export const randInt = (min = 0, max = 10000) => {
 };
 
 //============================================================
-
+const renderNote = (container, note) => {
+  if (note.HTML == null) {
+    note.HTML = new Note().HTML;
+  }
+  container.appendChild(note.HTML());
+};
+const renderStoredNotes = () => {
+  if (noteList.length > 0) {
+    noteList.forEach((note) => {
+      renderNote(noteContainer, note);
+      console.log(note);
+    });
+  }
+};
+renderStoredNotes();
 const addNote = (e) => {
   let noteText = noteArea.value.trim();
   let tag = tags[tagSelect.value];
   if (noteText.length > 0) {
     const note = new Note(noteText, tag);
     tag.notes++;
-    noteContainer.appendChild(note.HTML());
-    notesList.push(note);
-    window.localStorage.setItem("notes", JSON.stringify(notesList));
+    renderNote(noteContainer, note);
+    console.log(note);
+    noteList.push(note);
+    let span = document.querySelector(`#${tag.label}`);
+    span.textContent = `(${tag.notes})`;
+    window.localStorage.setItem("notes", JSON.stringify(noteList));
   }
 };
 
