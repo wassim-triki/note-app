@@ -260,6 +260,14 @@ const renderNote = (container, note) => {
   container.appendChild(note.HTML());
 };
 
+const renderNotesFromStorage = () => {
+  storedNotes.forEach((note) => {
+    renderNote(noteContainer, note);
+  });
+};
+
+renderNotesFromStorage();
+
 const addNote = (e) => {
   let noteText = noteArea.value.trim();
   let tag = tags[tagSelect.value];
