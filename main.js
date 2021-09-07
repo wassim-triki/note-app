@@ -26,10 +26,12 @@ export const noteContainer = document.querySelector(".container");
 const tagsUl = document.querySelector("#tags");
 const notesUl = document.querySelector("#notes");
 
+export const noteState = document.querySelector(".empty");
+
 const st = window.localStorage;
 export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
 
-renderNotesFromList(storedNotes);
+renderNotesFromList(tags.all.noteList);
 renderNavTags(tags, tagsUl, notesUl);
 setNavTags(storedNotes, tags);
 
@@ -54,6 +56,7 @@ export const removeNote = (e, storedNotes) => {
   }
   note.remove();
   setNavTags(storedNotes, tags);
+  noteState.style.display = "block";
 };
 
 const addModalTags = (tags, select) => {
@@ -91,6 +94,7 @@ const addNote = (e) => {
     renderNote(note);
     window.localStorage.setItem("notes", JSON.stringify(storedNotes));
     setNavTags(storedNotes, tags);
+    noteState.style.display = "none";
   }
 };
 

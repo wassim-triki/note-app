@@ -1,7 +1,6 @@
 import { icons, Note } from "./classes.js";
-import { noteContainer } from "../main.js";
+import { noteContainer, noteState } from "../main.js";
 import { navbar } from "./navbar.js";
-const noteState = document.querySelector(".empty");
 
 function existingTagNotes(tag, storedNotes) {
   const tagNotes = [];
@@ -22,9 +21,14 @@ export function updateTagListsObjects(tags, storedNotes) {
 }
 export const renderNotesFromList = (storedNotes) => {
   noteContainer.innerHTML = "";
-  storedNotes.forEach((note) => {
-    renderNote(note);
-  });
+  if (storedNotes.length > 0) {
+    noteState.style.display = "none";
+    storedNotes.forEach((note) => {
+      renderNote(note);
+    });
+  } else {
+    noteState.style.display = "block";
+  }
 };
 
 export function renderNavTags(tags, tagsUl, notesUl) {
