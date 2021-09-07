@@ -23,7 +23,6 @@ export function renderNavTags(tags, tagsUl, notesUl) {
     li.classList.add("tags-notes");
 
     const tagIcon = icons[currentTag.label.toLowerCase()];
-    console.log(currentTag);
     li.appendChild(tagIcon);
 
     const label = document.createElement("p");
