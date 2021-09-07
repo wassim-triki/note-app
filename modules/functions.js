@@ -2,7 +2,7 @@ import { icons, Note } from "./classes.js";
 function existingTagNotes(tag, storedNotes) {
   const tagNotes = [];
   storedNotes.forEach((note) => {
-    if (note.tagName === tag.label) {
+    if (note.labels.includes(tag.label)) {
       tagNotes.push(note);
     }
   });
@@ -11,7 +11,8 @@ function existingTagNotes(tag, storedNotes) {
 
 export function updateTagListsObjects(tags, storedNotes) {
   for (let tag in tags) {
-    tags[tag].noteList = existingTagNotes(tags[tag], storedNotes);
+    let currentTag = tags[tag];
+    currentTag.noteList = existingTagNotes(currentTag, storedNotes);
   }
 }
 

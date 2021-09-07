@@ -59,7 +59,9 @@ export const removeNote = (e, storedNotes) => {
 const addModalTags = (tags, select) => {
   const tagList = [];
   for (let tag in tags) {
-    tagList.push(tags[tag]);
+    if (tags[tag].isTag) {
+      tagList.push(tags[tag]);
+    }
   }
   tagList.reverse().forEach((tag) => {
     const option = document.createElement("option");
@@ -83,6 +85,7 @@ const addNote = (e) => {
   let tag = tags[tagSelect.value];
   if (noteText.length > 0) {
     const note = new Note(noteText, tag.label);
+    note.labels = tag.labelList;
     tag.noteList.push(note);
     storedNotes.push(note);
     renderNote(noteContainer, note);

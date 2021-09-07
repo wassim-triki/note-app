@@ -19,6 +19,7 @@ export const icons = {
 export class Tag {
   constructor(label, isTag = true) {
     this.label = label;
+    this.labelList = ["All", label];
     this.noteList = [];
     this.isTag = isTag;
   }
@@ -32,6 +33,7 @@ export class Note {
   constructor(text, tagName) {
     this.text = text;
     this.tagName = tagName;
+    this.labels;
     this.date = getFormattedDate();
   }
   HTML() {
