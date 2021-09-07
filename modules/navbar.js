@@ -1,4 +1,4 @@
-const navbar = document.querySelector(".navbar");
+export const navbar = document.querySelector(".navbar");
 const navToggle = document.querySelector(".fa-bars");
 const navShrink = document.querySelector(".close-nav");
 export const navbarToggle = () => {

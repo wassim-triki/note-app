@@ -6,7 +6,7 @@ import {
   closeModal,
   openModal,
   clearNote,
-  renderNotesFromStorage,
+  renderNotesFromList,
   renderNote,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
@@ -21,7 +21,7 @@ const noteModal = document.querySelector(".modal");
 const modalClosingBtns = [discardBtn, closeModalBtn, doneBtn];
 const noteArea = document.querySelector("#note-text");
 
-const noteContainer = document.querySelector(".container");
+export const noteContainer = document.querySelector(".container");
 
 const tagsUl = document.querySelector("#tags");
 const notesUl = document.querySelector("#notes");
@@ -29,7 +29,7 @@ const notesUl = document.querySelector("#notes");
 const st = window.localStorage;
 export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
 
-renderNotesFromStorage(storedNotes, noteContainer);
+renderNotesFromList(storedNotes);
 renderNavTags(tags, tagsUl, notesUl);
 setNavTags(storedNotes, tags);
 
@@ -88,7 +88,7 @@ const addNote = (e) => {
     note.labels = tag.labelList;
     tag.noteList.push(note);
     storedNotes.push(note);
-    renderNote(noteContainer, note);
+    renderNote(note);
     window.localStorage.setItem("notes", JSON.stringify(storedNotes));
     setNavTags(storedNotes, tags);
   }

@@ -1,4 +1,8 @@
 import { icons, Note } from "./classes.js";
+import { noteContainer } from "../main.js";
+import { navbar } from "./navbar.js";
+const noteState = document.querySelector(".empty");
+
 function existingTagNotes(tag, storedNotes) {
   const tagNotes = [];
   storedNotes.forEach((note) => {
@@ -6,6 +10,7 @@ function existingTagNotes(tag, storedNotes) {
       tagNotes.push(note);
     }
   });
+
   return tagNotes;
 }
 
@@ -15,13 +20,25 @@ export function updateTagListsObjects(tags, storedNotes) {
     currentTag.noteList = existingTagNotes(currentTag, storedNotes);
   }
 }
+export const renderNotesFromList = (storedNotes) => {
+  noteContainer.innerHTML = "";
+  storedNotes.forEach((note) => {
+    renderNote(note);
+  });
+};
 
 export function renderNavTags(tags, tagsUl, notesUl) {
   for (let tag in tags) {
     let currentTag = tags[tag];
     const li = document.createElement("li");
     li.classList.add("tags-notes");
-
+    li.addEventListener("click", () => {
+      renderNotesFromList(currentTag.noteList);
+      navbar.classList.remove("slide-in");
+      currentTag.noteList.length > 0
+        ? (noteState.style.display = "none")
+        : (noteState.style.display = "block");
+    });
     const tagIcon = icons[currentTag.label.toLowerCase()];
     li.appendChild(tagIcon);
 
@@ -69,15 +86,9 @@ export const clearNote = (noteArea) => {
   noteArea.value = "";
 };
 //====================
-export const renderNote = (noteContainer, note) => {
+export const renderNote = (note) => {
   if (note.HTML == null) {
     note.HTML = new Note().HTML;
   }
   noteContainer.appendChild(note.HTML());
-};
-
-export const renderNotesFromStorage = (storedNotes, noteContainer) => {
-  storedNotes.forEach((note) => {
-    renderNote(noteContainer, note);
-  });
 };
