@@ -17,9 +17,10 @@ export const icons = {
   untagged: iconFromClasses("far", "fa-bookmark", "blue"),
 };
 export class Tag {
-  constructor(label) {
+  constructor(label, isTag = true) {
     this.label = label;
     this.noteList = [];
+    this.isTag = isTag;
   }
 }
 

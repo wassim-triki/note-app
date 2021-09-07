@@ -15,13 +15,14 @@ export function updateTagListsObjects(tags, storedNotes) {
   }
 }
 
-export function renderNavTags(tags, tagsUl) {
+export function renderNavTags(tags, tagsUl, notesUl) {
   for (let tag in tags) {
     let currentTag = tags[tag];
     const li = document.createElement("li");
     li.classList.add("tags-notes");
 
     const tagIcon = icons[currentTag.label.toLowerCase()];
+    console.log(currentTag);
     li.appendChild(tagIcon);
 
     const label = document.createElement("p");
@@ -34,9 +35,9 @@ export function renderNavTags(tags, tagsUl) {
       span = document.createElement("span");
     }
     span.id = currentTag.label;
+    span.classList.add("all-types");
     li.appendChild(span);
-
-    tagsUl.appendChild(li);
+    currentTag.isTag ? tagsUl.appendChild(li) : notesUl.appendChild(li);
   }
 }
 

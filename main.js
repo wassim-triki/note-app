@@ -30,7 +30,7 @@ const st = window.localStorage;
 export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
 
 renderNotesFromStorage(storedNotes, noteContainer);
-renderNavTags(tags, tagsUl);
+renderNavTags(tags, tagsUl, notesUl);
 setNavTags(storedNotes, tags);
 
 navbarToggle();

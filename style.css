@@ -312,17 +312,9 @@ a {
   outline: none;
 }
 
-#Travel::before,
-#Personal::before,
-#Life::before,
-#Work::before,
-#Untagged::before {
+.all-types::before {
   content: "(";
 }
-#Travel::after,
-#Personal::after,
-#Life::after,
-#Work::after,
-#Untagged::after {
+.all-types::after {
   content: ")";
 }
