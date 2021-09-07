@@ -31,11 +31,11 @@ export const noteState = document.querySelector(".empty");
 const st = window.localStorage;
 export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
 
-renderNotesFromList(tags.all.noteList);
 renderNavTags(tags, tagsUl, notesUl);
 setNavTags(storedNotes, tags);
 
 navbarToggle();
+renderNotesFromList(tags.all.noteList);
 
 export const removeNote = (e, storedNotes) => {
   let i = 0;
@@ -56,7 +56,6 @@ export const removeNote = (e, storedNotes) => {
   }
   note.remove();
   setNavTags(storedNotes, tags);
-  noteState.style.display = "block";
 };
 
 const addModalTags = (tags, select) => {
