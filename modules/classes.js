@@ -1,3 +1,4 @@
+import { removeNote, storedNotes } from "../main.js";
 const iconFromClasses = (...classes) => {
   const i = document.createElement("i");
   classes.forEach((c) => {

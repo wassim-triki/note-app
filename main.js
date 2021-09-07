@@ -1,4 +1,4 @@
-import { Tag, Note } from "./modules/classes.js";
+import { Note } from "./modules/classes.js";
 import { tags } from "./modules/objects.js";
 import {
   renderNavTags,
@@ -27,7 +27,7 @@ const tagsUl = document.querySelector("#tags");
 const notesUl = document.querySelector("#notes");
 
 const st = window.localStorage;
-const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
+export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
 
 renderNotesFromStorage(storedNotes, noteContainer);
 renderNavTags(tags, tagsUl);
@@ -53,7 +53,7 @@ export const removeNote = (e, storedNotes) => {
     }
   }
   note.remove();
-  setNavTags();
+  setNavTags(storedNotes, tags);
 };
 
 const addModalTags = (tags, select) => {

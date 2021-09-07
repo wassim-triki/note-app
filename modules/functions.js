@@ -49,7 +49,6 @@ export function updateTagListsUI(tags) {
 }
 
 export function setNavTags(storedNotes, tags) {
-  console.log(storedNotes);
   if (storedNotes.length > 0) {
     updateTagListsObjects(tags, storedNotes);
   }
