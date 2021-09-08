@@ -107,6 +107,8 @@ a {
 .tags-notes:focus,
 .tags-notes--active {
   background: var(--clr-grey);
+  cursor: pointer;
+  outline: none;
 }
 
 .green {
