@@ -1,33 +1,39 @@
-import { getFormattedDate, getTagIcon, removeNote } from "./functions.js";
-import { notesList } from "../main.js";
-class NoteContainer {
-  constructor(label) {
+import { removeNote, storedNotes } from "../main.js";
+const iconFromClasses = (...classes) => {
+  const i = document.createElement("i");
+  classes.forEach((c) => {
+    i.classList.add(c);
+  });
+  return i;
+};
+export const icons = {
+  all: iconFromClasses("far", "fa-clipboard"),
+  "to-dos": iconFromClasses("far", "fa-check-circle"),
+  favourites: iconFromClasses("far", "fa-star"),
+  travel: iconFromClasses("fas", "fa-bookmark", "green"),
+  personal: iconFromClasses("fas", "fa-bookmark", "cyan"),
+  life: iconFromClasses("fas", "fa-bookmark", "yellow"),
+  work: iconFromClasses("fas", "fa-bookmark", "red"),
+  untagged: iconFromClasses("far", "fa-bookmark", "blue"),
+};
+export class Tag {
+  constructor(label, isTag = true) {
     this.label = label;
-    this.notesList = [];
-    this.notes = this.notesList.length;
-    this.icon;
+    this.labelList = ["All", label];
+    this.noteList = [];
+    this.isTag = isTag;
   }
 }
 
-export class NoteType extends NoteContainer {
-  constructor(nodeType) {
-    super(nodeType);
-    this.parentElement = notes;
-  }
-}
-
-export class Tag extends NoteContainer {
-  constructor(tagName, color) {
-    super(tagName);
-    this.parentElement = tags;
-    this.color = color;
-  }
-}
+const getFormattedDate = () => {
+  return new Date().toString().slice(0, new Date().toString().lastIndexOf(":"));
+};
 
 export class Note {
-  constructor(text, tag) {
+  constructor(text, tagName) {
     this.text = text;
-    this.tag = tag;
+    this.tagName = tagName;
+    this.labels;
     this.date = getFormattedDate();
   }
   HTML() {
@@ -36,9 +42,9 @@ export class Note {
 
     const noteHeader = document.createElement("div");
     noteHeader.classList.add("note-header");
-    const tagIcon = getTagIcon(this.tag);
+    const tagIcon = icons[this.tagName.toLowerCase()].cloneNode(true);
     const headerTag = document.createElement("p");
-    headerTag.textContent = this.tag.label;
+    headerTag.textContent = this.tagName;
     noteHeader.appendChild(tagIcon);
     noteHeader.appendChild(headerTag);
 
@@ -51,7 +57,8 @@ export class Note {
     trash.classList.add("far");
     trash.classList.add("fa-trash-alt");
     trash.addEventListener("click", (e) => {
-      removeNote(e, notesList);
+      removeNote(e, storedNotes);
+      window.localStorage.setItem("notes", JSON.stringify(storedNotes));
     });
     noteFooter.appendChild(noteDate);
     noteFooter.appendChild(trash);

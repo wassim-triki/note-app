@@ -1,39 +1,19 @@
-import { NoteType, Note } from "./modules/classes.js";
+import { Note } from "./modules/classes.js";
+import { tags } from "./modules/objects.js";
 import {
-  addNoteTypes,
-  addTags,
+  renderNavTags,
+  setNavTags,
   closeModal,
   openModal,
   clearNote,
-  addModalTags,
-  resetTagSelect,
+  renderNotesFromList,
+  renderNote,
+  resetActiveTab,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
-import { tags } from "./modules/objects.js";
-
-const allNotes = new NoteType("All Notes");
-allNotes.icon = '<i class="far fa-clipboard"></i>';
-const toDos = new NoteType("To-dos");
-toDos.icon = '<i class="far fa-check-circle"></i>';
-const favourites = new NoteType("Fovourites");
-favourites.icon = '<i class="far fa-star"></i>';
-const noteTypeList = [allNotes, toDos, favourites];
-
-const tagList = [];
-for (const key in tags) {
-  tagList.push(tags[key]);
-}
-
-addNoteTypes(noteTypeList);
-addTags(tagList);
-
-navbarToggle();
 
 const tagSelect = document.querySelector("#tag-select");
-
-addModalTags(tagList, tagSelect);
-
-const newNoteBtn = document.querySelector("#new");
+const newNoteBtn = document.querySelector(".new");
 const closeModalBtn = document.querySelector("#close-modal");
 const discardBtn = document.querySelector(".discard");
 const doneBtn = document.querySelector(".done");
@@ -41,17 +21,80 @@ const noteModal = document.querySelector(".modal");
 const modalClosingBtns = [discardBtn, closeModalBtn, doneBtn];
 const noteArea = document.querySelector("#note-text");
 
-const noteContainer = document.querySelector(".container");
+export const noteContainer = document.querySelector(".container");
 
-export const notesList = [];
+const tagsUl = document.querySelector("#tags");
+const notesUl = document.querySelector("#notes");
+
+export const noteState = document.querySelector(".empty");
+
+const st = window.localStorage;
+export const storedNotes = st.length > 0 ? JSON.parse(st.getItem("notes")) : [];
+
+renderNavTags(tags, tagsUl, notesUl);
+setNavTags(storedNotes, tags);
+
+navbarToggle();
+renderNotesFromList(tags.all.noteList);
+
+export const removeNote = (e, storedNotes) => {
+  let i = 0;
+  const note = e.target.parentNode.parentNode;
+  let newNote = note;
+  while (newNote.previousElementSibling != null) {
+    i++;
+    newNote = newNote.previousElementSibling;
+  }
+  //opposite of tag.noteList.push(note) in add function
+  let [removed] = storedNotes.splice(i, 1);
+  for (let key in tags) {
+    let tag = tags[key];
+    let i = tag.noteList.indexOf(removed);
+    if (i != -1) {
+      tag.noteList.splice(i, 1);
+    }
+  }
+  note.remove();
+  setNavTags(storedNotes, tags);
+};
+
+const addModalTags = (tags, select) => {
+  const tagList = [];
+  for (let tag in tags) {
+    if (tags[tag].isTag) {
+      tagList.push(tags[tag]);
+    }
+  }
+  tagList.reverse().forEach((tag) => {
+    const option = document.createElement("option");
+    option.textContent = tag.label;
+    option.value = tag.label.toLowerCase();
+    select.appendChild(option);
+  });
+};
+addModalTags(tags, tagSelect);
+
+export const resetTagSelect = (select) => {
+  select.getElementsByTagName("option")[0].selected = "selected";
+};
+
+export const randInt = (min = 0, max = 10000) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
 
 const addNote = (e) => {
   let noteText = noteArea.value.trim();
-  let [tag] = tagList.filter((t) => t.label.toLowerCase() == tagSelect.value);
+  let tag = tags[tagSelect.value];
   if (noteText.length > 0) {
-    const note = new Note(noteText, tag);
-    noteContainer.appendChild(note.HTML());
-    notesList.push(note);
+    const note = new Note(noteText, tag.label);
+    note.labels = tag.labelList;
+    tag.noteList.push(note);
+    storedNotes.push(note);
+    resetActiveTab();
+    renderNote(note);
+    window.localStorage.setItem("notes", JSON.stringify(storedNotes));
+    setNavTags(storedNotes, tags);
+    noteState.style.display = "none";
   }
 };
 
@@ -70,7 +113,6 @@ newNoteBtn.addEventListener("click", () => {
   openModal(noteModal, newNoteBtn);
 });
 
-doneBtn.addEventListener("click", () => {
-  addNote;
-  console.log(notesList);
+doneBtn.addEventListener("click", (e) => {
+  addNote(e);
 });

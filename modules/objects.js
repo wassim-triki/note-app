@@ -1,8 +1,11 @@
 import { Tag } from "./classes.js";
 export const tags = {
-  travel: new Tag("Travel", "green"),
-  personal: new Tag("Personal", "cyan"),
-  life: new Tag("Life", "yellow"),
-  work: new Tag("Work", "red"),
-  untagged: new Tag("Untagged", "blue"),
+  all: new Tag("All", false),
+  "to-dos": new Tag("To-dos", false),
+  favourites: new Tag("Favourites", false),
+  travel: new Tag("Travel"),
+  personal: new Tag("Personal"),
+  life: new Tag("Life"),
+  work: new Tag("Work"),
+  untagged: new Tag("Untagged"),
 };
