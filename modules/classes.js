@@ -47,6 +47,30 @@ export class Note {
     headerTag.textContent = this.tagName;
     noteHeader.appendChild(tagIcon);
     noteHeader.appendChild(headerTag);
+    const iFav = document.createElement("i");
+    iFav.classList.add("far");
+    iFav.classList.add("fa-star");
+    1;
+    iFav.classList.add("note-star");
+    1;
+    iFav.id = "favourites";
+    1;
+    iFav.addEventListener("click", () => {
+      tags[iFav.id].noteList.push(this);
+    });
+    const iToDo = document.createElement("i");
+    iToDo.classList.add("far");
+    iToDo.classList.add("fa-check-circle");
+    1;
+    iToDo.classList.add("note-todo");
+    1;
+    iToDo.id = "to-do";
+    1;
+    const noteHeaderBtns = document.createElement("div");
+    noteHeaderBtns.classList.add("note-btns");
+    noteHeaderBtns.appendChild(iFav);
+    noteHeaderBtns.appendChild(iToDo);
+    noteHeader.appendChild(noteHeaderBtns);
 
     const noteFooter = document.createElement("div");
     noteFooter.classList.add("note-footer");
