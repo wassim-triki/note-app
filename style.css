@@ -2,6 +2,7 @@
   --clr-white: #ffffff;
   --clr-black: #2b2f33;
   --clr-grey: #ebebeb;
+  --clr-star: #ffc400;
 }
 
 *,
@@ -66,6 +67,9 @@ a {
   .slide-in {
     left: 0.2%;
   }
+  .note-text {
+    padding: 1rem 0;
+  }
 }
 
 #nav-list {
@@ -112,7 +116,7 @@ a {
   color: #69ddff;
 }
 .yellow {
-  color: #ffdb3a;
+  color: var(--clr-star);
 }
 .blue {
   color: #4c5cf1;
@@ -390,9 +394,22 @@ a {
   display: none;
 }
 .note-btns {
+  margin-right: 0.4rem;
   display: flex;
   gap: 1rem;
   margin-left: auto;
   font-size: 1.5rem;
   opacity: 0.6;
+}
+
+.note-star {
+  transition: transform 0.2s ease;
+}
+.note-star:hover {
+  cursor: pointer;
+  color: var(--clr-star);
+}
+.note-star--active {
+  color: var(--clr-star);
+  transform: rotateZ(216deg);
 }

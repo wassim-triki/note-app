@@ -8,7 +8,7 @@ const iconFromClasses = (...classes) => {
 };
 export const icons = {
   all: iconFromClasses("far", "fa-clipboard"),
-  "to-dos": iconFromClasses("far", "fa-check-circle"),
+  // "to-dos": iconFromClasses("far", "fa-check-circle"),
   favourites: iconFromClasses("far", "fa-star"),
   travel: iconFromClasses("fas", "fa-bookmark", "green"),
   personal: iconFromClasses("fas", "fa-bookmark", "cyan"),
@@ -56,20 +56,25 @@ export class Note {
     iFav.id = "favourites";
     1;
     iFav.addEventListener("click", () => {
-      tags[iFav.id].noteList.push(this);
+      if (iFav.classList.contains("far")) {
+        iFav.classList.replace("far", "fas");
+      } else {
+        iFav.classList.replace("fas", "far");
+      }
+      iFav.classList.toggle("note-star--active");
     });
-    const iToDo = document.createElement("i");
-    iToDo.classList.add("far");
-    iToDo.classList.add("fa-check-circle");
-    1;
-    iToDo.classList.add("note-todo");
-    1;
-    iToDo.id = "to-do";
-    1;
+    // const iToDo = document.createElement("i");
+    // iToDo.classList.add("far");
+    // iToDo.classList.add("fa-check-circle");
+    // 1;
+    // iToDo.classList.add("note-todo");
+    // 1;
+    // iToDo.id = "to-do";
+    // 1;
     const noteHeaderBtns = document.createElement("div");
     noteHeaderBtns.classList.add("note-btns");
     noteHeaderBtns.appendChild(iFav);
-    noteHeaderBtns.appendChild(iToDo);
+    // noteHeaderBtns.appendChild(iToDo);
     noteHeader.appendChild(noteHeaderBtns);
 
     const noteFooter = document.createElement("div");
