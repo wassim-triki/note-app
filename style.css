@@ -10,13 +10,25 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+.toggle-btn:hover,
+.toggle-btn:focus {
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  opacity: 0.8;
 }
 html,
 body {
   overflow-x: hidden;
 }
 body {
-  /* background: var(--clr-white); */
   background: var(--clr-grey);
   color: var(--clr-black);
   font-family: Poppins, sans-serif;
@@ -109,7 +121,7 @@ a {
   left: 101%;
   top: 1%;
   transform: scale(1);
-  transition: transform 1s ease;
+  transition: transform 0.5s ease;
 }
 .toggle-btn:hover {
   transform: scale(1.1);
@@ -124,7 +136,7 @@ a {
   left: 0%;
 }
 
-#new {
+.new {
   border-radius: 20rem;
   border: none;
   position: fixed;
@@ -132,6 +144,9 @@ a {
   height: 4rem;
   background: #2a86ff;
   color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   bottom: 1rem;
   left: 0;
@@ -139,15 +154,20 @@ a {
   margin-right: auto;
   margin-left: auto;
   padding: 0.5rem;
-  font-size: 1.5rem;
-  transition: box-shadow 0.1s ease;
-  transition: font-size 0.1s ease;
-  transition: bottom 0.2s cubic-bezier(0, 1.12, 0.76, 1.03);
+  transition: font-size 0.5s ease;
+  transition: bottom 0.1s cubic-bezier(0, 1.12, 0.76, 1.03);
   z-index: 6;
+  outline: none;
 }
-#new:active {
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.233);
+.new-icon {
   font-size: 1.1rem;
+  transition: font-size 0.1s ease;
+  outline: none;
+}
+
+.new:hover .new-icon,
+.new:focus .new-icon {
+  font-size: 1.5rem;
 }
 .new-hidden {
   bottom: -4rem !important;
@@ -321,8 +341,12 @@ a {
 }
 
 .fa-trash-alt:active {
+  background-color: var(--clr-grey);
   font-size: 1.4rem;
-  /* background-color: #ecebeb; */
+}
+.fa-trash-alt:hover {
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
 #tag-select {

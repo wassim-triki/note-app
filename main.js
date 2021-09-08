@@ -11,10 +11,9 @@ import {
   resetActiveTab,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
-document.addEventListener("DOMContentLoaded", () => {});
 
 const tagSelect = document.querySelector("#tag-select");
-const newNoteBtn = document.querySelector("#new");
+const newNoteBtn = document.querySelector(".new");
 const closeModalBtn = document.querySelector("#close-modal");
 const discardBtn = document.querySelector(".discard");
 const doneBtn = document.querySelector(".done");
