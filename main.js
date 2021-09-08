@@ -8,6 +8,7 @@ import {
   clearNote,
   renderNotesFromList,
   renderNote,
+  resetActiveTab,
 } from "./modules/functions.js";
 import { navbarToggle } from "./modules/navbar.js";
 document.addEventListener("DOMContentLoaded", () => {});
@@ -90,6 +91,7 @@ const addNote = (e) => {
     note.labels = tag.labelList;
     tag.noteList.push(note);
     storedNotes.push(note);
+    resetActiveTab();
     renderNote(note);
     window.localStorage.setItem("notes", JSON.stringify(storedNotes));
     setNavTags(storedNotes, tags);

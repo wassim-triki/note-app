@@ -1,6 +1,6 @@
 import { icons, Note } from "./classes.js";
 import { noteContainer, noteState } from "../main.js";
-import { navbar } from "./navbar.js";
+import { navbar, determineNavState } from "./navbar.js";
 
 function existingTagNotes(tag, storedNotes) {
   const tagNotes = [];
@@ -31,6 +31,17 @@ export const renderNotesFromList = (storedNotes) => {
   }
 };
 
+function clearActiveTabs() {
+  document.querySelectorAll(".tags-notes").forEach((e) => {
+    e.classList.remove("tags-notes--active");
+  });
+}
+export function resetActiveTab() {
+  document.querySelectorAll(".tags-notes").forEach((e) => {
+    if (!e.querySelector("#All")) e.classList.remove("tags-notes--active");
+  });
+}
+
 export function renderNavTags(tags, tagsUl, notesUl) {
   for (let tag in tags) {
     let currentTag = tags[tag];
@@ -39,6 +50,9 @@ export function renderNavTags(tags, tagsUl, notesUl) {
     li.addEventListener("click", () => {
       renderNotesFromList(currentTag.noteList);
       navbar.classList.remove("slide-in");
+      determineNavState();
+      clearActiveTabs();
+      li.classList.add("tags-notes--active");
       currentTag.noteList.length > 0
         ? (noteState.style.display = "none")
         : (noteState.style.display = "block");
