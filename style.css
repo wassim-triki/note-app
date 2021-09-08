@@ -24,6 +24,9 @@ button:hover,
 button:focus {
   opacity: 0.8;
 }
+html {
+  height: 100%;
+}
 html,
 body {
   overflow-x: hidden;
