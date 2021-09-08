@@ -105,7 +105,8 @@ a {
 
 .tags-notes:active,
 .tags-notes:focus,
-.tags-notes--active {
+.tags-notes--active,
+.tags-notes:hover {
   background: var(--clr-grey);
   cursor: pointer;
   outline: none;
