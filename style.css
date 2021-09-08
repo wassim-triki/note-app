@@ -66,9 +66,6 @@ a {
   .slide-in {
     left: 0.2%;
   }
-  .toggle-btn {
-    /* left: 10; */
-  }
 }
 
 #nav-list {
@@ -261,7 +258,7 @@ a {
   border: none;
   border-top: 2px solid var(--clr-grey);
   border-bottom: 2px solid var(--clr-grey);
-  overflow: scroll;
+  overflow: hidden;
   outline: none;
   resize: none;
   font-family: Poppins, sans-serif;
@@ -374,9 +371,6 @@ a {
   font-size: 0.9rem;
   outline: none;
   cursor: pointer;
-}
-option {
-  padding: 1rem;
 }
 
 .all-types::before {
